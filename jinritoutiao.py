@@ -1,3 +1,9 @@
+"""
+    猫眼TOP100榜单排名
+    2019-10-10
+    邱深知
+"""
+
 from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
