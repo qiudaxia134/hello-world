@@ -8,13 +8,19 @@ from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.chrome.options import Options
 from pyquery import PyQuery as pq
 import time
 
 
 def parse_website():
+    # 无头模式
+    chrome_options = Options()
+    chrome_options.add_argument('--headless')
+
     # 通过Chrome()方法打开chrome浏览器
-    browser = webdriver.Chrome()
+    browser = webdriver.Chrome(chrome_options=chrome_options)
+
     # 访问京东网站
     browser.get("https://www.jd.com")
     # 等待50秒
@@ -93,11 +99,16 @@ def parse_book(page, html):
         print(text, '\n')
         print('-----------------------------------------------------------------------')
 
+        with open('jingdon.txt','a',encoding='utf-8')as f:
+            f.write(text)
+            f.close()
 
 
 def main():
     parse_website()
 
-
 if __name__ == "__main__":
+    # try:
     main()
+    # except:
+    #     print("关闭")
